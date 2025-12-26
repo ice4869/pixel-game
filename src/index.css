@@ -1,0 +1,191 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+  --pixel-bg: #2c2c2c;
+  --pixel-text: #ffffff;
+  --pixel-primary: #ff004d;
+  --pixel-secondary: #00e436;
+  --pixel-accent: #29adff;
+  --pixel-yellow: #ffec27;
+  --pixel-border: 4px solid #fff;
+  --font-title: 'Press Start 2P', cursive;
+  --font-body: 'VT323', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  image-rendering: pixelated;
+  /* Crucial for pixel art look */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--pixel-bg);
+  color: var(--pixel-text);
+  font-family: var(--font-body);
+  font-size: 24px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-title);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  letter-spacing: 2px;
+  text-shadow: 4px 4px 0px #000;
+}
+
+button {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--pixel-accent);
+  color: #fff;
+  border: 4px solid #fff;
+  box-shadow: 4px 4px 0px #000;
+  cursor: pointer;
+  transition: transform 0.1s;
+  text-transform: uppercase;
+}
+
+button:active {
+  transform: translate(4px, 4px);
+  box-shadow: none;
+}
+
+button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+input {
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border: 4px solid #fff;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 1rem;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.pixel-card {
+  border: 4px solid #fff;
+  padding: 2rem;
+  background: #000;
+  box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.pixel-card::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border: 4px solid transparent;
+  pointer-events: none;
+  /* KEY FIX: Allow clicks to pass through */
+}
+
+.nes-container {
+  position: relative;
+  padding: 1.5rem 2rem;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 4px;
+  margin-bottom: 2rem;
+}
+
+/* Responsive Utilities */
+@media (max-width: 600px) {
+  #root {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .pixel-card {
+    padding: 1rem;
+  }
+}
+
+/* Game Page Specifics */
+.game-options-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.boss-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  min-height: 200px;
+  position: relative;
+}
+
+.boss-wrapper {
+  position: relative;
+}
+
+.boss-bubble {
+  position: absolute;
+  top: -20px;
+  right: -170px;
+  background: #fff;
+  color: #000;
+  padding: 10px;
+  border: 4px solid #000;
+  /* Made slightly thicker to match theme */
+  font-size: 0.8rem;
+  width: 160px;
+  font-family: var(--font-body);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+/* Mobile adjustments for Game Page */
+@media (max-width: 640px) {
+  .game-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boss-bubble {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    margin-top: 10px;
+    width: auto;
+    text-align: center;
+    max-width: 200px;
+    /* Create a speech bubble tail pointing up if possible, or just a box */
+  }
+
+  .boss-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
