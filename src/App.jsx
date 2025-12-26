@@ -35,7 +35,7 @@ function AppContent() {
 function App() {
     return (
         <GameProvider>
-            <Router>
+            <Router basename={import.meta.env.BASE_URL}>
                 <AppContent />
             </Router>
         </GameProvider>
